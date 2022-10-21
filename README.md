@@ -12,10 +12,8 @@ Most work taken from other similar projects:
 
 
 ## Requirements
-
-for hopy.py, which is just the readout, you will need to install pyserial
-
-for hopi_plot.py, which uses that to draw the last few minutes of data, you will need to install matplotlib
+- pyserial
+- matplotlib (unless you're using this only for the readout code)
 
 So probably:
 ```
@@ -23,9 +21,19 @@ pip3 install pyserial matplotlib
 ```
 
 
-## TODO
+## TODO /  CONSIDER
+- add date-and-time to axis
+
+- fix the CRC code  (right now the check is disabled)
+
+- command line arguments parsing
+
+- add separate script to log data
+
+- text on linux
+
 - See if it makes sense to show both apparent and real power
 
-- don't assume 230V 50Hz
+- don't assume 230V 50Hz (probably detect based on first samples)
 
 - rewrite it async style?
