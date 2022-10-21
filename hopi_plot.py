@@ -1,6 +1,4 @@
-import time
-
-import matplotlib, numpy
+import matplotlib
 from matplotlib import pyplot
 
 import hopy
@@ -12,13 +10,7 @@ if __name__ == '__main__':
     except ImportError as ie:
         print("Error importing pyserial.  You may want to do:  pip3 install pyserial")
 
-    #try:
-    #    # Tkagg-specific?
-    #    window = pyplot.get_current_fig_manager().window
-    #    w, h = window.wm_maxsize()
-    #    fig = pyplot.figure( figsize=(w/150, h/150) )
-    #except:
-    fig = pyplot.figure( figsize=(14, 8) )  # figsize in inches (with the default dpi)
+    fig = pyplot.figure( figsize=(14, 8) )  # decent chunk of a modern screen
 
     simple = False # TODO: put on parameter
 
@@ -37,43 +29,28 @@ if __name__ == '__main__':
     if not simple:
         all_axes.extend( [axis_volts, axis_freq] )
 
-    pyplot.ion()
-    pyplot.show()
-
-    #fig.tight_layout()
-
     fig.canvas.manager.set_window_title('HOPI readout')
 
-    first = True
     stop = False
     def stop_soon(_):
+        global stop
         stop = True
+    fig.canvas.mpl_connect('close_event', stop_soon) # roughly to ensure we close the program (and don't hold up the serial port)
 
-    fig.canvas.mpl_connect('close_event', stop_soon)
+    first = True
+
+    pyplot.ion()
+    pyplot.show()
 
     data_time  = []
     data_current, data_volts, data_pf, data_freq, data_power = [], [], [], [], []
 
-
-    hopi = hopy.Hopi(verbose=False)
+    hopi = hopy.Hopi(verbose=False) # defaults to look for CH340s
     while not stop:
         hopi.read_all()
-        #for i, reg in enumerate(hopi.regs):
-        #    what, unit = hopi.REGS[i]
-        #    print( '%20s: %10.4f %-5s '%(what,hopi.regs[i], unit) )
-
-        #     Active Power:     5.8301 W
-        #      RMS Current:     0.0401 A
-        #      Voltage RMS:   231.0917 V
-        #        Frequency:    50.0000 Hz
-        #     Power Factor:     0.6281
-        #     Annual Power:    21.2799 kWh
-        #     Active Power:     0.0032 kWh
-        #   Reactive Power:     0.0019 kWh            
+        #print(hopi.regs)
 
         last_points = 300 # approx 5 mins
-
-        #print(hopi.regs)
 
         data_current.append( hopi.regs[1] )
         data_current = data_current[-last_points:]

@@ -1,4 +1,4 @@
-# The HOPI meter with USB is a CH340 USB-to-serial device, that talks Modbus, more specifically the RTU variant
+# The HOPI meter with USB is a CH340 USB-to-serial device, that talks Modbus-RTU
 # 
 # Piggybacking on the research in  https://github.com/lornix/hopi_hp-9800/blob/master/hopi.c
 # - 9600 baud
@@ -22,25 +22,22 @@
 #            Device Address
 # 
 # Uses much of the code from  https://gist.github.com/raplin/76da6392f34934738ff865891a7b672f#file-hopi_hp-9800_python_simple-py
-#   so that we can avoid a modbus library
-# libraries we could use include pymodbus (), MinimalModbus, Modbus-tk, uModbus   https://stackoverflow.com/questions/17081442/python-modbus-library
+#   so that we can avoid a modbus library as a depdendency
 
 
 import struct
 
 import serial
+import serial.tools.list_ports
 
 
 def detect_ch340():
     ''' returns a list of pyserial port objects. If we can read out the VID and PID, it will be filtered for only CH340s '''
-    import serial.tools.list_ports
     ports = list(serial.tools.list_ports.comports())
     filtered_ports = []
     for port in ports:
-        # dir() includes 'description', 'device', 'hwid', 'interface', 'location', 'manufacturer', 'name', 'pid', 'product', 'serial_number', 'usb_description', 'usb_info', 'vid']
-        # I'm assuming the vid and pid isn't always there
-        if hasattr(ports[0], 'vid'):
-            if port.vid == 0x1A86 and port.pid == 0x7523:
+        if hasattr(ports[0], 'vid'): # seems fair to assume this isn't always there
+            if port.vid == 0x1A86  and  port.pid == 0x7523: # TODO: see if there are any more PIDs that should be checked for
                 #print("filtered in CH340 serial device: %s, description %s"%(port.name, port.description))
                 filtered_ports.append( port )
         else: # can't filter
@@ -137,7 +134,7 @@ class Hopi:
 
 if __name__ == '__main__':
     ' test of this module when you run it directly, not for regular use '
-    import time
+    import time, datetime
 
     try:
         import serial
@@ -146,6 +143,7 @@ if __name__ == '__main__':
 
     hopi = Hopi()
     while True:
+        print('\n===== %s ====='%datetime.datetime.now())
         hopi.read_all()
         for i, reg in enumerate(hopi.regs):
             what, unit = hopi.REGS[i]
