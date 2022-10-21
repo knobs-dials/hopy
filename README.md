@@ -1,6 +1,11 @@
 # hopy
-Quick and dirty plotting of data from a USB-enabled HOPI HP-9800 power meter
+Live plotting of data from a USB-enabled HOPI HP-9800 power meter
 
+## screenshot
+![Screenshot](https://raw.githubusercontent.com/scarfboy/hopy/main/screenshots/more.png)
+
+
+## Acknowledgments
 Most work taken from other similar projects:
 - https://github.com/lornix/hopi_hp-9800
 - https://gist.github.com/raplin/76da6392f34934738ff865891a7b672f#file-hopi_hp-9800_python_simple-py
