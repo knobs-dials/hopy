@@ -30,10 +30,8 @@ pip3 install pyserial matplotlib
 
 - add separate script to log data
 
-- text on linux
+- test on linux
 
 - See if it makes sense to show both apparent and real power
-
-- don't assume 230V 50Hz (probably detect based on first samples)
 
 - rewrite it async style?
