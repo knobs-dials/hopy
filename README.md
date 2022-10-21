@@ -1,4 +1,3 @@
-# hopy
 Live plotting of data from a USB-enabled HOPI HP-9800 power meter
 
 ## Screenshot
