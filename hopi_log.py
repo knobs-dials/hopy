@@ -1,7 +1,9 @@
 #!/usr/bin/python3
+" Logs to stdout, nothing more "
+
 import time, hopy
 
-hopi = hopy.Hopi(verbose=False) # defaults to look for CH340s
+hopi = hopy.Hopi( verbose=False ) # defaults to look for CH340s
 
 while True:
     hopi.read_all()

@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+" Uses matplotlib to show plots in a GUI window "
+
 import matplotlib
 from matplotlib import pyplot
 

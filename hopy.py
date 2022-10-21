@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+" serial interaction code to read out a HOPI HP-9800 meter.   See hopi_log.py and hopi_plot.py for example uses. "
+
 # The HOPI meter with USB is a CH340 USB-to-serial device, that talks Modbus-RTU
 # 
 # Piggybacking on the research in  https://github.com/lornix/hopi_hp-9800/blob/master/hopi.c
@@ -149,4 +152,4 @@ if __name__ == '__main__':
             what, unit = hopi.REGS[i]
             print( '%20s: %10.2f %-5s '%(what,hopi.regs[i], unit) )
 
-        time.sleep( 1 )
+        time.sleep( 0.95 )
