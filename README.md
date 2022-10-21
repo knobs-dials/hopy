@@ -1,7 +1,7 @@
 # hopy
 Live plotting of data from a USB-enabled HOPI HP-9800 power meter
 
-## screenshot
+## Screenshot
 ![Screenshot](https://raw.githubusercontent.com/scarfboy/hopy/main/screenshots/more.png)
 
 
