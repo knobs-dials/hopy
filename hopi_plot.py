@@ -58,7 +58,8 @@ if __name__ == '__main__':
         data_current.append( hopi.regs[1] )
         data_current = data_current[-last_points:]
         axis_current.cla()
-        axis_current.plot( data_current )
+        axis_current.plot( data_current, marker='o', linestyle='solid', linewidth=0.1, markersize=1.5 )
+        axis_current.fill_between(range(len(data_current)), data_current, color="skyblue", alpha=0.4)
         axis_current.title.set_text('Current')
         axis_current.set_ylabel('A')
         axis_current.set_ylim( 0, max(0.1, 1.1*max(data_current)) )  # TODO: adaptive
@@ -67,7 +68,7 @@ if __name__ == '__main__':
         data_pf.append( hopi.regs[4])
         data_pf = data_pf[-last_points:]
         axis_pf.cla()
-        axis_pf.plot( data_pf )
+        axis_pf.plot( data_pf, marker='o', linestyle='solid', linewidth=0.1, markersize=1.5 )
         axis_pf.title.set_text('Power factor')
         axis_pf.set_ylim( 0, 1.05 )
         axis_pf.text( x=len(data_pf)-1,  y=data_pf[-1],  s='%.2f'%data_pf[-1],  fontdict={'size':16}  )
@@ -75,7 +76,8 @@ if __name__ == '__main__':
         data_power.append( hopi.regs[0] )
         data_power = data_power[-last_points:]
         axis_power.cla()
-        axis_power.plot( data_power)
+        axis_power.plot( data_power, marker='o', linestyle='solid', linewidth=0.1, markersize=1.5 )
+        axis_power.fill_between(range(len(data_power)), data_power, color="mediumvioletred", alpha=0.4)
         axis_power.title.set_text('Real power')
         axis_power.set_ylabel('W')
         axis_power.set_ylim( 0, max(25, 1.1* max(data_power)) )  # TODO: adaptive
@@ -85,20 +87,27 @@ if __name__ == '__main__':
             data_volts.append( hopi.regs[2])
             data_volts = data_volts[-last_points:]
             axis_volts.cla()
-            axis_volts.plot( data_volts )
+            axis_volts.plot( data_volts, marker='o', linestyle='solid', linewidth=0.1, markersize=1.5 )
+            #axis_volts.fill_between(range(len(data_volts)), data_volts, color="springgreen", alpha=0.4)
             axis_volts.title.set_text('Mains voltage')
             axis_volts.set_ylabel('V')
-            axis_volts.set_ylim( 215, 250 ) 
+            #axis_volts.set_ylim( 215, 250 ) 
             #axis_volts.set_ylim( max(220, min(data_volts)),  min(250, max(data_volts)), ) 
+            mi, ma = min(data_volts), max(data_volts)
+            axis_volts.set_ylim( mi-2, ma+2 ) 
             axis_volts.text( x=len(data_volts)-1,  y=data_volts[-1],  s='%.1f V'%data_volts[-1],  fontdict={'size':16}  )
 
             data_freq.append( hopi.regs[3])
             data_freq = data_freq[-last_points:]
             axis_freq.cla()
-            axis_freq.plot( data_freq )
+            axis_freq.plot( data_freq, marker='o', linestyle='solid', linewidth=0.1, markersize=1.5 )
             axis_freq.title.set_text('Mains frequency')
             axis_freq.set_ylabel('Hz')
             axis_freq.set_ylim( 49.9, 50.1 ) 
+            mi, ma = min(data_freq), max(data_freq)
+            space = 0.1 #0.05*abs(ma-mi)
+            axis_freq.set_ylim( mi-space, ma+space ) 
+
             axis_freq.text( x=len(data_freq)-1,  y=data_freq[-1],  s='%.3f Hz'%data_freq[-1],  fontdict={'size':16}  )
 
 
