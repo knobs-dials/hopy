@@ -11,6 +11,7 @@ Most lower-level work taken from other similar projects:
 
 
 ## Requirements
+- python 3
 - pyserial
 - matplotlib (unless you're using this only for the readout code)
 
