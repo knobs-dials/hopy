@@ -15,7 +15,7 @@ Most lower-level work taken from other similar projects:
 - pyserial
 - matplotlib (unless you're using this only for the readout code)
 
-So probably:
+From scratch, [download and install python 3](https://www.python.org/downloads/) and run:
 ```
 pip3 install pyserial matplotlib
 ```
