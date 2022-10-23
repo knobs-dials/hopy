@@ -28,8 +28,6 @@ pip3 install pyserial matplotlib
 
 - command line arguments parsing
 
-- add separate script to log data
-
 - test on linux
 
 - See if it makes sense to show both apparent and real power
