@@ -35,3 +35,5 @@ pip3 install pyserial matplotlib
 - rewrite it async style?
 
 - wrap into executable, instad of requiring you install python and some packges
+
+- web USB version
