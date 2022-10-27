@@ -33,3 +33,5 @@ pip3 install pyserial matplotlib
 - See if it makes sense to show both apparent and real power
 
 - rewrite it async style?
+
+- wrap into executable, instad of requiring you install python and some packges
