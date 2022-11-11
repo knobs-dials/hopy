@@ -10,7 +10,7 @@
 # - values are mostly 
 #   Seems to be 9 floats 
 #       32-bit floats values, each spread over 2 registers, DCBA style  https://www.libmodbus.org/docs/v3.1.2/modbus_get_float_dcba.html
-#       ...so 18 of the words
+#       ...so 18 of the words are acually 9 float32s
 #            Active Power   W
 #            Current RMS    A
 #            Voltage RMS    V
