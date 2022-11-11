@@ -21,19 +21,13 @@ pip3 install pyserial matplotlib
 ```
 
 
-## TODO /  CONSIDER
-- add date-and-time to axis
-
-- fix the CRC code  (right now the check is disabled)
-
+## TODO
 - command line arguments parsing
-
 - test on linux
-
-- See if it makes sense to show both apparent and real power
-
-- rewrite it async style?
-
+- see if it makes sense to show both apparent and real power
 - wrap into executable, instad of requiring you install python and some packges
 
-- web USB version
+CONSIDER
+- rewrite it async style?
+- fix the CRC code  (right now the check is disabled - I'm not sure whether it's just my HOPI or a general issue)
+- web USB version?
