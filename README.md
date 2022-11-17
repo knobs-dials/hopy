@@ -25,9 +25,10 @@ pip3 install pyserial matplotlib
 - command line argument parsing
 - figure out port naming and priorities on linux
 - see if it makes sense to show both apparent and real power (divide by power factor)
-- wrap into executable, instad of requiring you install python and some packges
+- wrap into executable, so we don't have to require you install python and some packges
 
 CONSIDER
+- make the interface connect to devices as you plug them in (also to be able to report, and not just fail silently)
 - rewrite it async style?
-- fix the CRC code  (right now the check is disabled - I'm not sure whether it's just my HOPI or a general issue)
+- fix the CRC code  (right now the check on incoming data is  disabled - I'm not sure whether it's just my HOPI or a general issue)
 - web USB version?
