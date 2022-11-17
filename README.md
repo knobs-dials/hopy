@@ -22,9 +22,9 @@ pip3 install pyserial matplotlib
 
 
 ## TODO
-- command line arguments parsing
-- test on linux
-- see if it makes sense to show both apparent and real power
+- command line argument parsing
+- figure out port naming and priorities on linux
+- see if it makes sense to show both apparent and real power (divide by power factor)
 - wrap into executable, instad of requiring you install python and some packges
 
 CONSIDER
