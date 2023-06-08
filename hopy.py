@@ -36,7 +36,7 @@ import serial.tools.list_ports
 
 def detect_ch340():
     ''' returns a list of pyserial port objects. If we can read out the VID and PID, it will be filtered for only CH340s '''
-    ports = list(serial.tools.list_ports.comports())
+    ports = list( serial.tools.list_ports.comports() )
     filtered_ports = []
     for port in ports:
         if hasattr(ports[0], 'vid'): # seems fair to assume this isn't always there
@@ -46,6 +46,7 @@ def detect_ch340():
         else: # can't filter
             filtered_ports.append( port )
     return filtered_ports
+
 
 def crc(data: bytes):
     poly = 0xa001
@@ -89,7 +90,10 @@ class Hopi:
             if len(ports)==0:
                 raise RuntimeError( 'No CH340 device found - is the HOPI plugged in?' )
 
-        portname = ports[-1].name # assume it's the last
+        portname = ports[-1].name  # assume it's the last
+        if portname.startswith('tty'):
+            portname = '/dev/' + portname
+        
         #print("Assuming and trying %s"%portname)
         self.port = serial.Serial(portname, baudrate=9600, timeout=1)
 
