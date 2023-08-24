@@ -69,12 +69,12 @@ def bytes_as_hex(data:bytes):
 
 
 class Hopi:
-    REGS = [
+    _REGS = [
             ("Active Power","W"),
             ("RMS Current","A"),
             ("Voltage RMS","V"),
             ("Frequency","Hz"),
-            ("Power Factor",""),
+            ("Power Factor","ratio"),
             ("Annual Power","kWh"),
             ("Active Power","kWh"),
             ("Reactive Power","kWh"),
@@ -135,8 +135,25 @@ class Hopi:
 
     def read_all(self):
         ' updates the list of floats that is self.regs '
-        self.regs = self.readRegs( 0, len(self.REGS)*2 )
+        self.regs = self.readRegs( 0, len(self._REGS)*2 )
 
+    def data_as_dict(self):
+        ''' Returns a dict like
+            {
+                'active_power_w':     66.6, 
+                'rms_current_a':       0.338, 
+                'voltage_rms_v':     232.5, 
+                'frequency_hz':       50.0125, 
+                'power_factor_ratio':  0.847, 
+                'annual_power_kwh':  535.478, 
+                'active_power_kwh':  195.690, 
+                'reactive_power_kwh': 20.512
+            }
+        '''
+        ret = {}
+        for i, (name, unit) in enumerate(self._REGS):
+            ret[(name+' '+unit).lower().replace(' ','_')] = self.regs[i]
+        return ret
 
 
 if __name__ == '__main__':
@@ -153,7 +170,7 @@ if __name__ == '__main__':
         print('\n===== %s ====='%datetime.datetime.now())
         hopi.read_all()
         for i, reg in enumerate(hopi.regs):
-            what, unit = hopi.REGS[i]
+            what, unit = hopi._REGS[i]
             print( '%20s: %10.2f %-5s '%(what,hopi.regs[i], unit) )
 
         time.sleep( 0.95 )

@@ -65,7 +65,7 @@ if __name__ == '__main__':
         axis_current.set_ylim( 0, max(0.1, 1.1*max(data_current)) )  # TODO: adaptive
         axis_current.text( x=len(data_current)-1,  y=data_current[-1],  s='%.1f mA'%(1000.*data_current[-1]),  fontdict={'size':16} )
 
-        data_pf.append( hopi.regs[4])
+        data_pf.append( hopi.regs[4] )
         data_pf = data_pf[-last_points:]
         axis_pf.cla()
         axis_pf.plot( data_pf, marker='o', linestyle='solid', linewidth=0.1, markersize=1.5 )
@@ -84,7 +84,7 @@ if __name__ == '__main__':
         axis_power.text( x=len(data_power)-1,  y=data_power[-1],  s='%.1f W'%data_power[-1],  fontdict={'size':16}  )
 
         if not simple:
-            data_volts.append( hopi.regs[2])
+            data_volts.append( hopi.regs[2] )
             data_volts = data_volts[-last_points:]
             axis_volts.cla()
             axis_volts.plot( data_volts, marker='o', linestyle='solid', linewidth=0.1, markersize=1.5 )
@@ -97,7 +97,7 @@ if __name__ == '__main__':
             axis_volts.set_ylim( mi-2, ma+2 ) 
             axis_volts.text( x=len(data_volts)-1,  y=data_volts[-1],  s='%.1f V'%data_volts[-1],  fontdict={'size':16}  )
 
-            data_freq.append( hopi.regs[3])
+            data_freq.append( hopi.regs[3] )
             data_freq = data_freq[-last_points:]
             axis_freq.cla()
             axis_freq.plot( data_freq, marker='o', linestyle='solid', linewidth=0.1, markersize=1.5 )
