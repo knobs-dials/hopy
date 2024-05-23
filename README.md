@@ -21,9 +21,9 @@ pip3 install pyserial matplotlib
 ```
 
 ## Short code/file overview
-- hopy.py - helpers for the next two files
-- hopi_log.py - opens device, reads out, prints to stdout
-- hopi_plot.py - opens device, reads out, plots in GUI
+- `hopy.py` - helpers for the next two files
+- `hopi_log.py` - opens device, reads out, prints to stdout
+- `hopi_plot.py` - opens device, reads out, plots in GUI
 
 
 ## TODO
