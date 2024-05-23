@@ -20,15 +20,20 @@ From scratch, [download and install python 3](https://www.python.org/downloads/)
 pip3 install pyserial matplotlib
 ```
 
+## Short code/file overview
+- hopy.py - helpers for the next two files
+- hopi_log.py - opens device, reads out, prints to stdout
+- hopi_plot.py - opens device, reads out, plots in GUI
+
 
 ## TODO
+- wrap into executable, so we don't have to require you install python and some packges
 - command line argument parsing
 - figure out port naming and priorities on linux
 - see if it makes sense to show both apparent and real power (divide by power factor)
-- wrap into executable, so we don't have to require you install python and some packges
 
 CONSIDER
-- make the interface connect to devices as you plug them in (also to be able to report, and not just fail silently)
+- make the interface connect to devices as you plug them in (also to be able to report, and not just fail silently), not just at startup
+- reivew / fix the CRC code  (right now the check on incoming data is  disabled - I'm not sure whether it's just my HOPI or a general issue)
 - rewrite it async style?
-- fix the CRC code  (right now the check on incoming data is  disabled - I'm not sure whether it's just my HOPI or a general issue)
 - web USB version?
